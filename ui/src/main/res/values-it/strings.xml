@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">App Meteo</string>
+    <string name="cloud_image">Immagine di nuvola</string>
+</resources>
