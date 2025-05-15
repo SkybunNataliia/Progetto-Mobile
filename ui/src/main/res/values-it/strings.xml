@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">App Meteo</string>
     <string name="cloud_image">Immagine di nuvola</string>
+    <string name="btn_search_city">Altra città</string>
+    <string name="title_1">Meteo Preferiti</string>
 </resources>
