@@ -7,14 +7,15 @@ android {
     namespace 'com.corsolp.ui'
     compileSdk 35
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
-        applicationId "com.corsolp.ui"
         minSdk 28
-        targetSdk 35
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -34,6 +35,8 @@ android {
 
 dependencies {
 
+    implementation project(path: ':domain')
+
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
@@ -41,4 +44,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
+
+    implementation libs.fragment.version
 }

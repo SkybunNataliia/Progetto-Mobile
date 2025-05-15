@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    id("kotlin-kapt")
 }
 
 android {
@@ -8,13 +10,10 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.corsolp.data"
         minSdk 28
-        targetSdk 35
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,6 +32,14 @@ android {
 }
 
 dependencies {
+
+    implementation project(path: ':domain')
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    kapt(libs.moshi.codegen)
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
