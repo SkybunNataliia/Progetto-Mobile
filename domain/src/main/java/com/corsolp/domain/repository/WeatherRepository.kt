@@ -14,4 +14,6 @@ interface WeatherRepository {
     suspend fun fetchCurrentWeather(city: City): Weather
 
     suspend fun fetchForecast(city: City): Forecast
+
+    suspend fun geocodeCity(cityName: String): City?
 }
