@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+def apiKey = project.findProperty("OPENWEATHER_API_KEY")
+
 android {
     namespace 'com.corsolp.appmeteo'
     compileSdk 35
@@ -19,6 +21,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "OPENWEATHER_API_KEY", "\"${apiKey}\""
     }
 
     buildTypes {

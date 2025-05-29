@@ -6,7 +6,7 @@ import com.corsolp.data.remote.models.WeatherRemoteModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface WeatherApiService {
+interface WeatherApi {
 
     @GET("/data/2.5/weather")
     suspend fun getCurrentWeather(
