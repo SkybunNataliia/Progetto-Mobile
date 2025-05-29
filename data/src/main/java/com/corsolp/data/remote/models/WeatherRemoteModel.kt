@@ -1,16 +1,20 @@
 package com.corsolp.data.remote.models
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class WeatherRemoteModel(
-    val name: String,
+    @Json(name = "name") val name: String,
     val main: Main,
     val weather: List<WeatherDescription>
 )
 
 data class Main(
-    val temp: Float
+    @Json(name = "temp") val temp: Float
 )
 
 data class WeatherDescription(
-    val main: String,
-    val description: String
+    @Json(name = "main") val main: String,
+    @Json(name = "description") val description: String
 )
