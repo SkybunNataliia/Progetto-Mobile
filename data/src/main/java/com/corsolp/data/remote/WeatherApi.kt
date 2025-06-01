@@ -10,14 +10,16 @@ interface WeatherApi {
 
     @GET("/data/2.5/weather")
     suspend fun getCurrentWeather(
-        @Query("q") city: String = "Rome",
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("units") units: String = "metric",
         @Query("lang") lang: String = "it"
     ): WeatherRemoteModel
 
     @GET("/data/2.5/forecast")
     suspend fun getForecast(
-        @Query("q") city: String,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("units") units: String = "metric",
         @Query("lang") lang: String = "it"
     ): ForecastRemoteModel
@@ -27,5 +29,4 @@ interface WeatherApi {
         @Query("q") city: String,
         @Query("limit") limit: Int = 1
     ): List<GeoLocationRemoteModel>
-
 }
