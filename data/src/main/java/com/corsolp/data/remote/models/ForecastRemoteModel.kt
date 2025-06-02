@@ -5,12 +5,12 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ForecastRemoteModel(
-    val list: List<ForecastItem>
+    val list: List<ForecastRemoteItem>
 )
 
 @JsonClass(generateAdapter = true)
-data class ForecastItem(
-    @Json(name = "dt_txt") val dtTxt: String,
+data class ForecastRemoteItem(
+    @Json(name = "dt_txt") val date: String,
     val main: Mains,
     val weather: List<WeatherDescription>
 )
