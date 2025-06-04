@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.Flow
 interface WeatherRepository {
 
     fun fetchFavorites(): Flow<Set<City>>
-    suspend fun addFavoriteCity(city: City): Boolean
-    suspend fun removeFavoriteCity(city: City): Boolean
+    suspend fun addFavoriteCity(cityName: String): Boolean
+    suspend fun removeFavoriteCity(cityName: String): Boolean
 
-    suspend fun fetchCurrentWeather(city: City): Weather
+    suspend fun fetchCurrentWeather(cityName: String): Weather
 
-    suspend fun fetchForecast(city: City): Forecast
+    suspend fun fetchForecast(cityName: String): Forecast
 
     suspend fun geocodeCity(cityName: String): City?
 }
