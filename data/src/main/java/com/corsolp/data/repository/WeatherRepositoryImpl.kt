@@ -1,6 +1,7 @@
 package com.corsolp.data.repository
 
 import android.content.Context
+import android.util.Log
 import com.corsolp.data.remote.WeatherApi
 import com.corsolp.data.remote.models.ForecastRemoteModel
 import com.corsolp.data.remote.models.GeoLocationRemoteModel
@@ -20,6 +21,10 @@ class WeatherRepositoryImpl (
     private val weatherApi: WeatherApi
 ) : WeatherRepository {
 
+    companion object {
+        private const val TAG = "WeatherRepoImpl"
+    }
+
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun fetchFavorites(): Flow<Set<City>> {
@@ -35,10 +40,18 @@ class WeatherRepositoryImpl (
     }
 
     override suspend fun fetchCurrentWeather(cityName: String): Weather {
+
         val city = this.geocodeCity(cityName)
             ?: throw IllegalArgumentException("City not found: $cityName")
+        Log.d(TAG, "Geocoded city: $city")
+
         val weather = weatherApi.getCurrentWeather(lat = city.lat, lon = city.lon)
-        return weather.toDomain()
+        Log.d(TAG, "Received weather response: $weather")
+
+        val domainWeather = weather.toDomain()
+        Log.d(TAG, "Mapped domain weather: $domainWeather")
+
+        return domainWeather
     }
 
     override suspend fun fetchForecast(cityName: String): Forecast {
