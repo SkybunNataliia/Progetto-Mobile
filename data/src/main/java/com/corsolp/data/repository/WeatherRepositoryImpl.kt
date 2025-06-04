@@ -43,7 +43,6 @@ class WeatherRepositoryImpl (
 
         val city = this.geocodeCity(cityName)
             ?: throw IllegalArgumentException("City not found: $cityName")
-        Log.d(TAG, "Geocoded city: $city")
 
         val weather = weatherApi.getCurrentWeather(lat = city.lat, lon = city.lon)
         Log.d(TAG, "Received weather response: $weather")
@@ -55,11 +54,23 @@ class WeatherRepositoryImpl (
     }
 
     override suspend fun fetchForecast(cityName: String): Forecast {
-        TODO("Not yet implemented")
+
+        val city = this.geocodeCity(cityName)
+            ?: throw IllegalArgumentException("City not found: $cityName")
+
+        val forecast = weatherApi.getForecast(lat = city.lat, lon = city.lon)
+        Log.d(TAG, "Received forecast response: $forecast")
+
+        val domainForecast = forecast.toDomain()
+        Log.d(TAG, "Mapped domain forecast: $domainForecast")
+
+        return domainForecast
     }
 
     override suspend fun geocodeCity(cityName: String): City? {
+
         val response = weatherApi.geocodeCity(city = cityName)
+        Log.d(TAG, "Geocoded city: $cityName")
         return response.firstOrNull()?.toDomain()
     }
 
