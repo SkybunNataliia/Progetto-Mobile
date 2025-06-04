@@ -26,19 +26,22 @@ class WeatherRepositoryImpl (
         TODO("Not yet implemented")
     }
 
-    override suspend fun addFavoriteCity(city: City): Boolean {
+    override suspend fun addFavoriteCity(cityName: String): Boolean {
         TODO("Not yet implemented")
     }
 
-    override suspend fun removeFavoriteCity(city: City): Boolean {
+    override suspend fun removeFavoriteCity(cityName: String): Boolean {
         TODO("Not yet implemented")
     }
 
-    override suspend fun fetchCurrentWeather(city: City): Weather {
-        TODO("Not yet implemented")
+    override suspend fun fetchCurrentWeather(cityName: String): Weather {
+        val city = this.geocodeCity(cityName)
+            ?: throw IllegalArgumentException("City not found: $cityName")
+        val weather = weatherApi.getCurrentWeather(lat = city.lat, lon = city.lon)
+        return weather.toDomain()
     }
 
-    override suspend fun fetchForecast(city: City): Forecast {
+    override suspend fun fetchForecast(cityName: String): Forecast {
         TODO("Not yet implemented")
     }
 
