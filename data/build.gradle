@@ -11,6 +11,10 @@ android {
     namespace 'com.corsolp.data'
     compileSdk 35
 
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         minSdk 28
 

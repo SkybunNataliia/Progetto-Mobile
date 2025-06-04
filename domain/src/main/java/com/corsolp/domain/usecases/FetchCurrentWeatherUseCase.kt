@@ -6,15 +6,15 @@ import com.corsolp.domain.repository.WeatherRepository
 
 
 interface FetchCurrentWeatherUseCase {
-    suspend fun invoke(city: City): Weather
+    suspend fun invoke(cityName: String): Weather
 }
 
 class FetchCurrentWeatherUseCaseImpl (private val repository: WeatherRepository): FetchCurrentWeatherUseCase {
 
-    override suspend fun invoke(city: City): Weather {
-        require(city.name.isNotBlank()) { "Il nome della città non può essere vuoto" }
+    override suspend fun invoke(cityName: String): Weather {
+        require(cityName.isNotBlank()) { "Il nome della città non può essere vuoto" }
 
-        val weather = repository.fetchCurrentWeather(city = city)
+        val weather = repository.fetchCurrentWeather(cityName = cityName)
 
         return weather
     }

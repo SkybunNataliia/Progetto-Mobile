@@ -4,15 +4,15 @@ import com.corsolp.domain.models.City
 import com.corsolp.domain.repository.WeatherRepository
 
 interface RemoveFavoriteCityUseCase {
-    suspend fun invoke(city: City): Boolean
+    suspend fun invoke(cityName: String): Boolean
 }
 
 class RemoveFavoriteCityUseCaseImpl(private val repository: WeatherRepository) : RemoveFavoriteCityUseCase {
 
-    override suspend fun invoke(city: City): Boolean {
+    override suspend fun invoke(cityName: String): Boolean {
 
-        require(city.name.isNotBlank()) { "Il nome della città non può essere vuoto" }
+        require(cityName.isNotBlank()) { "Il nome della città non può essere vuoto" }
 
-        return repository.removeFavoriteCity(city = city)
+        return repository.removeFavoriteCity(cityName = cityName)
     }
 }
