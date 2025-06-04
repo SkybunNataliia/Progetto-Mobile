@@ -1,6 +1,6 @@
 package com.corsolp.data.remote
 
-import com.corsolp.BuildConfig
+import com.corsolp.data.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
@@ -14,7 +14,7 @@ class RetrofitClient {
 
     private val apiKeyInterceptor = Interceptor { chain ->
         val originalRequest = chain.request()
-        val originalUrl = originalRequest.url
+        val originalUrl = originalRequest.url()
 
         val newUrl = originalUrl.newBuilder()
             .addQueryParameter("appid", BuildConfig.OPENWEATHER_API_KEY)
