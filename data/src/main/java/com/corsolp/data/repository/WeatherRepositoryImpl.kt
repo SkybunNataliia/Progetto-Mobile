@@ -2,6 +2,7 @@ package com.corsolp.data.repository
 
 import android.content.Context
 import android.util.Log
+import com.corsolp.data.local.PreferencesManager
 import com.corsolp.data.remote.WeatherApi
 import com.corsolp.data.remote.models.ForecastRemoteModel
 import com.corsolp.data.remote.models.GeoLocationRemoteModel
@@ -17,26 +18,38 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class WeatherRepositoryImpl (
-    private val context: Context,
-    private val weatherApi: WeatherApi
+    private val weatherApi: WeatherApi,
+    private val preferencesManager: PreferencesManager
 ) : WeatherRepository {
 
     companion object {
         private const val TAG = "WeatherRepoImpl"
     }
 
-    private val scope = CoroutineScope(Dispatchers.IO)
-
     override fun fetchFavorites(): Flow<Set<City>> {
-        TODO("Not yet implemented")
+        return preferencesManager.favoriteCities
     }
 
     override suspend fun addFavoriteCity(cityName: String): Boolean {
-        TODO("Not yet implemented")
+
+        val city = this.geocodeCity(cityName)
+            ?: throw IllegalArgumentException("City not found: $cityName")
+
+        val result = preferencesManager.addCity(city)
+        Log.d(TAG, "Add to favorites: $cityName")
+
+        return result
     }
 
     override suspend fun removeFavoriteCity(cityName: String): Boolean {
-        TODO("Not yet implemented")
+
+        val city = this.geocodeCity(cityName)
+            ?: throw IllegalArgumentException("City not found: $cityName")
+
+        val result = preferencesManager.removeCity(city)
+        Log.d(TAG, "Remove from favorites: $cityName")
+
+        return result
     }
 
     override suspend fun fetchCurrentWeather(cityName: String): Weather {
@@ -71,6 +84,7 @@ class WeatherRepositoryImpl (
 
         val response = weatherApi.geocodeCity(city = cityName)
         Log.d(TAG, "Geocoded city: $cityName")
+
         return response.firstOrNull()?.toDomain()
     }
 
