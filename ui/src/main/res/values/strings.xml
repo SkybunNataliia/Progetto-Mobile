@@ -3,4 +3,5 @@
     <string name="cloud_image">Cloud image</string>
     <string name="btn_search_city">Another city</string>
     <string name="title_1">Weather Favorites</string>
+    <string name="remove_favorite">Remove from favorites</string>
 </resources>

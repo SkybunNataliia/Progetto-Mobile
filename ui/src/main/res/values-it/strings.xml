@@ -3,4 +3,5 @@
     <string name="cloud_image">Immagine di nuvola</string>
     <string name="btn_search_city">Altra città</string>
     <string name="title_1">Meteo Preferiti</string>
+    <string name="remove_favorite">Rimuovi dai preferiti</string>
 </resources>
