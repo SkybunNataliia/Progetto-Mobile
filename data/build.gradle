@@ -4,7 +4,13 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
 }
 
-def apiKey = project.findProperty("OPENWEATHER_API_KEY")
+def keystoreFile = project.rootProject.file('apikeys.properties')
+def properties = new Properties()
+keystoreFile.withInputStream { stream ->
+    properties.load(stream)
+}
+
+def apiKey = properties.getProperty('OPENWEATHER_API_KEY') ?: ''
 
 android {
     namespace 'com.corsolp.data'
@@ -20,7 +26,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField "String", "OPENWEATHER_API_KEY", "\"${apiKey}\""
+        buildConfigField(
+                'String',
+                'OPENWEATHER_API_KEY',
+                "\"${apiKey}\""
+        )
     }
 
     buildTypes {
