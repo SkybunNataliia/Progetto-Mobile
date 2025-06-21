@@ -5,17 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corsolp.ui.R
 import com.corsolp.ui.databinding.FragmentHomeBinding
+import com.corsolp.ui.search.SearchFragment
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var cityAdapter: CityAdapter
+    private lateinit var cityAdapter: CityWeatherAdapter
+
+    private val viewModel: HomeViewModel by viewModels {
+        HomeViewModelFactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +34,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cityAdapter = CityAdapter(emptyList())
+        cityAdapter = CityWeatherAdapter { cityToDelete ->
+            viewModel.removeFavoriteCity(cityToDelete.name)
+        }
+
         binding.recyclerViewCities.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = cityAdapter
@@ -40,10 +49,13 @@ class HomeFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-    }
 
-    fun updateCities(newCities: List<City>) {
-        cityAdapter.updateData(newCities)
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.favoritesList.collect { cityWeatherList ->
+                cityAdapter.submitList(cityWeatherList)
+            }
+        }
+
     }
 
     override fun onDestroyView() {
