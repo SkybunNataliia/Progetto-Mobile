@@ -39,6 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:visibility="visible"
         android:padding="@dimen/spacing_s"
         android:layout_marginTop="@dimen/spacing_m"
         android:layout_marginStart="@dimen/spacing_m"

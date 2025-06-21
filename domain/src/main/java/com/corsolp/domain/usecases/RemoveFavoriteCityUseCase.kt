@@ -4,7 +4,7 @@ import com.corsolp.domain.models.City
 import com.corsolp.domain.repository.WeatherRepository
 
 interface RemoveFavoriteCityUseCase {
-    suspend fun invoke(cityName: String): Boolean
+    suspend operator fun invoke(cityName: String): Boolean
 }
 
 class RemoveFavoriteCityUseCaseImpl(private val repository: WeatherRepository) : RemoveFavoriteCityUseCase {

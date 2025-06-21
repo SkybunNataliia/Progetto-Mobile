@@ -1,5 +1,6 @@
 package com.corsolp.data.remote
 
+import android.util.Log
 import com.corsolp.data.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

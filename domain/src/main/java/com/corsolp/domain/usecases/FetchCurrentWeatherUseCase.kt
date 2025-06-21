@@ -6,7 +6,7 @@ import com.corsolp.domain.repository.WeatherRepository
 
 
 interface FetchCurrentWeatherUseCase {
-    suspend fun invoke(cityName: String): Weather
+    suspend operator fun invoke(cityName: String): Weather
 }
 
 class FetchCurrentWeatherUseCaseImpl (private val repository: WeatherRepository): FetchCurrentWeatherUseCase {
