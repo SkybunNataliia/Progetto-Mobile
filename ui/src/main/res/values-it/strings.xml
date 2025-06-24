@@ -4,4 +4,9 @@
     <string name="btn_search_city">Altra città</string>
     <string name="title_1">Meteo Preferiti</string>
     <string name="remove_favorite">Rimuovi dai preferiti</string>
+    <string name="search_hint">Inserisci città</string>
+    <string name="search_title">Cerca Città</string>
+    <string name="search_btn">Cerca</string>
+    <string name="details">Vedi dettagli</string>
+    <string name="add_fav_btn">Aggiungi ai preferiti</string>
 </resources>

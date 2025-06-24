@@ -4,4 +4,9 @@
     <string name="btn_search_city">Another city</string>
     <string name="title_1">Weather Favorites</string>
     <string name="remove_favorite">Remove from favorites</string>
+    <string name="search_hint">Enter city</string>
+    <string name="search_title">Search City</string>
+    <string name="search_btn">Search</string>
+    <string name="details">Show details</string>
+    <string name="add_fav_btn">Add to favorites</string>
 </resources>
