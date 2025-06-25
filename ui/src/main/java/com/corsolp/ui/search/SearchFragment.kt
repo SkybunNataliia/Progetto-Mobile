@@ -43,7 +43,13 @@ class SearchFragment : Fragment() {
         }
 
         binding.btnAddFavorite.setOnClickListener {
-            viewModel.addToFavorites()
+            viewModel.addToFavorites { success ->
+                if (success) {
+                    Toast.makeText(requireContext(), "Added to favorites!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Error adding to favorites", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.btnDetails.setOnClickListener {

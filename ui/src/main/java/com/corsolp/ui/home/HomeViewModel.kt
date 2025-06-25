@@ -65,12 +65,14 @@ class HomeViewModel (
         }
     }
 
-    fun removeFavoriteCity(cityName: String) {
+    fun removeFavoriteCity(cityName: String, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
             try {
                 removeFavoriteCityUseCase(cityName)
+                onResult(true)
             } catch (e: Exception) {
                 Log.e(TAG, "Error removing city $cityName", e)
+                onResult(false)
             }
         }
     }

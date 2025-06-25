@@ -1,6 +1,8 @@
 package com.corsolp.ui.search
 
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.corsolp.domain.models.City
@@ -44,12 +46,19 @@ class SearchViewModel(
         }
     }
 
-    fun addToFavorites() {
+    fun addToFavorites(onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
             try {
-                _lastCitySearched.value?.let { addFavoriteCityUseCase(it) }
+                val cityName = _lastCitySearched.value
+                if (cityName != null) {
+                    val success = addFavoriteCityUseCase(cityName)
+                    onResult(success)
+                } else {
+                    onResult(false)
+                }
             } catch (e: Exception) {
                 Log.e(TAG, "Error adding city", e)
+                onResult(false)
             }
         }
     }
