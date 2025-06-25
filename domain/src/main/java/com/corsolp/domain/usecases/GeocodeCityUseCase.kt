@@ -4,7 +4,7 @@ import com.corsolp.domain.models.City
 import com.corsolp.domain.repository.WeatherRepository
 
 interface GeocodeCityUseCase {
-    suspend fun invoke(cityName: String): City?
+    suspend operator fun invoke(cityName: String): City?
 }
 
 class GeocodeCityUseCaseImpl(private val repository: WeatherRepository) : GeocodeCityUseCase {

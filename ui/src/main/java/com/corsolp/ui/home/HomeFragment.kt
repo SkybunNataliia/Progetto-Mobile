@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
 
         binding.btnSearchCity.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.home_container, SearchFragment())
+                .replace(R.id.main_container, SearchFragment())
                 .addToBackStack(null)
                 .commit()
         }
