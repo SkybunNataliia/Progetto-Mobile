@@ -8,11 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.corsolp.domain.models.City
-import com.corsolp.domain.models.Weather
 import com.corsolp.ui.R
 import com.corsolp.ui.databinding.FragmentSearchBinding
 import com.corsolp.ui.forecast.ForecastFragment
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -49,24 +48,26 @@ class SearchFragment : Fragment() {
 
         binding.btnDetails.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.search_container, ForecastFragment())
+                .replace(R.id.main_container, ForecastFragment())
                 .addToBackStack(null)
                 .commit()
         }
 
-        lifecycleScope.launch {
-            viewModel.weather.collect { weather ->
-                if (weather != null) {
-                    val cityName = viewModel.lastCitySearched.value ?: "N/D"
-                    binding.tvCityResult.text = cityName
-                    binding.tvTempResult.text = "${weather.weather.temperature.toInt()}°"
-                    binding.tvDescResult.text = weather.weather.description
-                    binding.resultContainer.visibility = View.VISIBLE
-                } else {
-                    binding.resultContainer.visibility = View.GONE
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.weather
+                .combine(viewModel.lastCitySearched) { weather, name -> Pair(weather, name) }
+                .collect { (weather, name) ->
+                    if (weather?.weather != null) {
+                        binding.tvCityResult.text = name ?: "N/D"
+                        binding.tvTempResult.text = "${weather.weather.temperature.toInt()}°"
+                        binding.tvDescResult.text = weather.weather.description
+                        binding.resultContainer.visibility = View.VISIBLE
+                    } else {
+                        binding.resultContainer.visibility = View.GONE
+                    }
                 }
-            }
         }
+
     }
 
     override fun onDestroyView() {
