@@ -29,8 +29,9 @@
         android:text="@string/btn_search_city"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
-        android:textSize="@dimen/text_s"
+        android:textSize="@dimen/text_m"
         android:layout_marginTop="@dimen/spacing_m"
+        android:layout_marginEnd="@dimen/spacing_m"
         app:layout_constraintTop_toBottomOf="@id/titleWeatherFavorites"
         app:layout_constraintEnd_toEndOf="parent" />
 

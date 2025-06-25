@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    android:id="@+id/search_container">
+    android:fillViewport="true"
+    android:padding="@dimen/spacing_m">
 
     <LinearLayout
-        android:padding="@dimen/spacing_m"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/titleSearchCity"
@@ -39,7 +39,7 @@
                 android:id="@+id/etCityName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:inputType="textCapWords|text"
                 android:autofillHints="postalAddress locality"
                 android:textColorHint="@color/white"/>
@@ -51,29 +51,32 @@
             app:backgroundTint="@color/blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_s"/>
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_gravity="center_horizontal"/>
 
         <LinearLayout
             android:id="@+id/resultContainer"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:visibility="gone"
+            android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_m">
 
             <TextView
                 android:id="@+id/tvCityResult"
-                android:textSize="@dimen/text_xl"
-                tools:text="Roma"
+                android:textSize="@dimen/text_display"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"/>
 
             <TextView
                 android:id="@+id/tvDescResult"
-                tools:text="Sole"
-                android:textSize="@dimen/text_l"
+                android:gravity="center"
+                android:textSize="@dimen/text_heading"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,8 +84,8 @@
 
             <TextView
                 android:id="@+id/tvTempResult"
-                tools:text="35°C"
-                android:textSize="@dimen/text_xl"
+                android:gravity="center"
+                android:textSize="@dimen/text_display"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -90,6 +93,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddFavorite"
                 android:text="@string/add_fav_btn"
+                android:layout_marginTop="@dimen/spacing_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:backgroundTint="@color/blue"/>
@@ -101,7 +105,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_s"
                 app:backgroundTint="@color/blue"/>
+
         </LinearLayout>
 
     </LinearLayout>
+
 </ScrollView>
