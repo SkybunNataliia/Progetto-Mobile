@@ -92,3 +92,18 @@ Il progetto si distingue per alcune scelte architetturali e tecniche:
 - Uso di Toast per feedback al utente.
 
 ### Possibili migliorie
+Nonostante il progetto sia funzionante e ben strutturato, ci sono diversi aspetti che potrebbero essere migliorati o estesi in futuro:
+
+- Utilizzo di un database locale (es. Room): per salvare le città preferite in modo persistente.
+
+- Navigation Component: per una gestione più dichiarativa e sicura della navigazione tra fragment.
+
+- Modalità light e supporto multilingua: per migliorare l’accessibilità e l’esperienza utente.
+ 
+- Notifiche personalizzate o widget meteo.
+
+- Miglioramenti generali della UI rendendola più interattiva.
+
+- Test Unitari e di UI.
+
+
