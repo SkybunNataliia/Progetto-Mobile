@@ -6,17 +6,10 @@ Questo progetto è stato realizzato come parte del corso universitario di _Labor
 
 L'obiettivo del progetto è lo sviluppo di una **applicazione Android Meteo** che consenta all'utente di:
 
-- Visualizzare le **previsioni meteo in tempo reale** per una lista di città preferite.
-- Effettuare una **ricerca meteo a 5 giorni** per una città specifica.
-- **Salvare in locale** le città preferite, così da poterle consultare anche in sessioni successive.
-
-L’interfaccia utente sarà composta da **due schermate principali**:
-
-1. **Schermata Città Salvate**  
-   Mostra le previsioni meteo in tempo reale delle città preferite (caricate da storage locale).
-
-2. **Schermata Ricerca**  
-   Permette all’utente di cercare nuove città e visualizzare le previsioni meteo a 5 giorni.
+- Cercare una città per visualizzarne le previsioni meteo attuali.
+- Salvare le città preferite.
+- Consultare le previsioni di 5 giorni per ogni città.
+- Rimuovere città dai preferiti.
 
 ### Struttura dei sorgenti
 
