@@ -2,11 +2,13 @@ package com.corsolp.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.corsolp.ui.MainActivity
 import com.corsolp.ui.databinding.ActivitySplashBinding
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import androidx.lifecycle.Lifecycle
 
 class SplashActivity : AppCompatActivity() {
 
@@ -18,9 +20,12 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }, 2000)
+        lifecycleScope.launch {
+            delay(2000)
+            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                finish()
+            }
+        }
     }
 }
