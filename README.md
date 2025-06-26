@@ -75,5 +75,20 @@ ForecastViewModel.kt: carica la previsione tramite il use case.
 
 ### Punti di forza
 
+Il progetto si distingue per alcune scelte architetturali e tecniche:  
+
+- Uso di Kotlin Flow e StateFlow.
+
+- Memorizzazione dei preferiti nelle SharedPreferences.
+
+- ViewBinding: migliora la sicurezza del codice rispetto ai riferimenti XML.
+
+- Navigation basata su FragmentTransaction.
+
+- Uso di DiffUtil nei RecyclerView Adapter.
+
+- Uso di componenti del Material Design.
+
+- Uso di Toast per feedback al utente.
 
 ### Possibili migliorie
