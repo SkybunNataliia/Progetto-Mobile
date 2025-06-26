@@ -9,4 +9,5 @@
     <string name="search_btn">Cerca</string>
     <string name="details">Vedi dettagli</string>
     <string name="add_fav_btn">Aggiungi ai preferiti</string>
+    <string name="forecast_title">Previsioni Meteo</string>
 </resources>

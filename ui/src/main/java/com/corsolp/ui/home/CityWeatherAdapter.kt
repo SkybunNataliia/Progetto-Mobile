@@ -10,12 +10,14 @@ import com.corsolp.ui.R
 import com.corsolp.ui.databinding.ItemCityBinding
 
 class CityWeatherAdapter(
-    private val onDeleteClicked: (City) -> Unit
+    private val onDeleteClicked: (City) -> Unit,
+    private val onItemClicked: (City) -> Unit
 ) : ListAdapter<HomeViewModel.CityWithWeather, CityWeatherAdapter.ViewHolder>(DiffCallback()) {
 
     class ViewHolder(
         private val binding: ItemCityBinding,
-        private val onDeleteClicked: (City) -> Unit
+        private val onDeleteClicked: (City) -> Unit,
+        private val onItemClicked: (City) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: HomeViewModel.CityWithWeather) {
@@ -39,12 +41,16 @@ class CityWeatherAdapter(
             binding.deleteButton.setOnClickListener {
                 onDeleteClicked(item.city)
             }
+
+            binding.root.setOnClickListener {
+                onItemClicked(item.city)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemCityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, onDeleteClicked)
+        return ViewHolder(binding, onDeleteClicked, onItemClicked)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
