@@ -106,4 +106,13 @@ Nonostante il progetto sia funzionante e ben strutturato, ci sono diversi aspett
 
 - Test Unitari e di UI.
 
+### API Utilizzate e Gestore
+Per il progetto ho utilizzato le API meteo gratuite fornite da OpenWeatherMap (https://openweathermap.org/api).
 
+Le chiamate API principali implementate sono:
+
+- _Current Weather Data_: per ottenere le condizioni meteo attuali di una città;
+
+- _5 Day / 3 Hour Forecast_: per visualizzare la previsione meteorologica a intervalli di 3 ore per i successivi 5 giorni;
+
+- _Geocoding API_: Utilizzata per convertire il nome di una città in coordinate geografiche (latitudine e longitudine), necessarie per effettuare le richieste meteo.
