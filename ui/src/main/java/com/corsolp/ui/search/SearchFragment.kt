@@ -53,8 +53,13 @@ class SearchFragment : Fragment() {
         }
 
         binding.btnDetails.setOnClickListener {
+            val fragment = ForecastFragment()
+            val bundle = Bundle()
+            bundle.putString("cityName", viewModel.lastCitySearched.value)
+            fragment.arguments = bundle
+
             parentFragmentManager.beginTransaction()
-                .replace(R.id.main_container, ForecastFragment())
+                .replace(R.id.main_container, fragment)
                 .addToBackStack(null)
                 .commit()
         }

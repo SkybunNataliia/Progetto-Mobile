@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.corsolp.domain.di.UseCaseProvider
 
 class HomeViewModelFactory : ViewModelProvider.Factory {
-
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
